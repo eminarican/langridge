@@ -1,0 +1,20 @@
+{
+  "secrets": {
+    "discord": "discord bot token here",
+    "deepl": "deepl api key here"
+  },
+  "groups": [
+    [
+      {
+        "id": 1111111111111111111,
+        "lang": "TR",
+        "webhook": "https://discord.com/api/webhooks/1111111111111111111/aaaaaaaaaa"
+      },
+      {
+        "id": 2222222222222222222,
+        "lang": "EN",
+        "webhook": "https://discord.com/api/webhooks/2222222222222222222/bbbbbbbbbb"
+      }
+    ]
+  ]
+}
