@@ -1,15 +1,13 @@
-use config::{Config, ConfigError, File};
+use figment::{Figment, providers::{Format, Json, Env}};
 use serde_derive::Deserialize;
 
 #[derive(Debug, Deserialize)]
-#[allow(unused)]
 pub struct Secrets {
     pub discord: String,
     pub deepl: String,
 }
 
 #[derive(Debug, Deserialize)]
-#[allow(unused)]
 pub struct Room {
     pub id: u64,
     pub lang: String,
@@ -17,18 +15,16 @@ pub struct Room {
 }
 
 #[derive(Debug, Deserialize)]
-#[allow(unused)]
 pub struct Settings {
     pub secrets: Secrets,
     pub groups: Vec<Vec<Room>>
 }
 
 impl Settings {
-    pub fn new() -> Result<Self, ConfigError> {
-        let config = Config::builder()
-            .add_source(File::with_name("Settings.json"))
-            .build()?;
-
-        config.try_deserialize()
+    pub fn new() -> figment::error::Result<Self> {
+        Figment::new()
+            .merge(Json::file("Settings.json"))
+            .merge(Env::prefixed("LANGRIDGE_"))
+            .extract()
     }
 }

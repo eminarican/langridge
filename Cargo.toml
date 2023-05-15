@@ -8,5 +8,5 @@ serenity = { version = "0.11", default-features = false, features = ["client", "
 tokio = { version = "1.21", features = ["macros", "rt-multi-thread"] }
 serde_derive = "1.0"
 serde = "1.0"
-config = "0.13.3"
+figment = { version = "0.10", features = ["json", "env"] }
 deepl = "0.4"
