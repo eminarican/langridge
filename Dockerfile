@@ -1,7 +1,7 @@
 FROM rust:1.69.0 as build
 WORKDIR /usr/src/langridge
 
-COPY Cargo.toml Cargo.lock ./
+COPY Cargo.toml ./
 COPY src/ ./src/
 
 RUN cargo build --release
