@@ -1,12 +1,12 @@
 FROM rust:1.69.0 as build
-WORKDIR /usr/src/langridge
+WORKDIR /usr/app
 
-COPY Cargo.toml ./
-COPY src/ ./src/
+COPY src/ ./src
+COPY Cargo.toml .
+COPY Settings.json .
 
 RUN cargo build --release
-RUN cargo install --path .
 
-FROM scratch
-COPY --from=build /usr/local/cargo/bin/langridge /usr/local/bin/
-CMD ["langridge"]
+FROM alpine:latest
+COPY --from=build /usr/app/target/release/langridge /usr/app
+CMD ["./usr/app/langridge"]
